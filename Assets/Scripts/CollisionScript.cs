@@ -43,7 +43,7 @@ public class CollisionScript : MonoBehaviour {
 		Handles activity in the LEARNING phase.
 		*/
 		if (GameControl.control.startedTrials == false) {
-			//Handles the lap progress. 
+			//Handles the lap progress.
 			if (GameControl.control.arrowList.Count == 13) {
 				GameControl.control.laps++;
 				GameControl.control.arrowList.Clear ();
@@ -58,7 +58,7 @@ public class CollisionScript : MonoBehaviour {
 				GameControl.control.startedTrials = true;
 			}
 
-			//Pressing F starts the LEARNING phase. 
+			//Pressing F starts the LEARNING phase.
 			if (Input.GetKey (KeyCode.F)) {
 				GameControl.control.movementLocked = false;
 				touchText.color = Color.red;
@@ -131,4 +131,4 @@ public class CollisionScript : MonoBehaviour {
 			}
 		}
 	}
-}		
+}
