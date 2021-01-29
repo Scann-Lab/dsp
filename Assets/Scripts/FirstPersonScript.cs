@@ -42,12 +42,8 @@ public class FirstPersonScript : MonoBehaviour {
 				if (GameControl.control.metadata == false) {
 					//write in elements
 					file.WriteLine ("ParticipantNo: " + GameControl.control.participantNumber);
-					file.WriteLine ("ParticipantGen: " + GameControl.control.participantGender);
-					file.WriteLine ("Stressor: " + GameControl.control.Stressor);
-					file.WriteLine ("Exp Type?: " + GameControl.control.ExpType);
 					file.WriteLine ("Repetition?: " + GameControl.control.RepType);
 					file.WriteLine ("DSPType: " + GameControl.control.DSPtype);
-					file.WriteLine ("AutoExperiment: " + GameControl.control.automaticExperiment);
 					file.WriteLine ("Encoding Tours: " + GameControl.control.LapsNumber);
 					GameControl.control.metadata = true;
 				}
@@ -58,7 +54,7 @@ public class FirstPersonScript : MonoBehaviour {
 					Debug.Log ("WROTE THE TRIAL " + "!!" + GameControl.control.currentLevelNo + "_" + GameControl.control.currentLevelName);
 				}
 			}
-		} 
+		}
 	}
 
 	// Update is called once per frame
@@ -76,7 +72,7 @@ public class FirstPersonScript : MonoBehaviour {
 		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
 		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
 		Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
-		speed = transform.rotation * speed; 
+		speed = transform.rotation * speed;
 
 		if (cc.enabled) {
 			cc.Move (speed * Time.deltaTime);
@@ -86,19 +82,19 @@ public class FirstPersonScript : MonoBehaviour {
 		if (GameControl.control.movementLocked == true) {
 			cc.enabled = false;
 			GameControl.control.startWriting = false;
-		} 
+		}
 		else {
 			cc.enabled = true;
 			GameControl.control.startWriting = true;
 
 		}
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			movementSpeed = 30.0f;
-		} 
-
-		if (Input.GetKeyUp (KeyCode.LeftShift)){
-			movementSpeed = 18.0f;
-		}
+		// if (Input.GetKeyDown (KeyCode.LeftShift)) {
+		// 	movementSpeed = 30.0f;
+		// }
+		//
+		// if (Input.GetKeyUp (KeyCode.LeftShift)){
+		// 	movementSpeed = 18.0f;
+		// }
 
 		//writing data
 		playerTransform = GameObject.Find ("Player").transform;

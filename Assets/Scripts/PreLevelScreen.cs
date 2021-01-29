@@ -14,15 +14,15 @@ public class PreLevelScreen : MonoBehaviour {
 
 		}
 		else {
-			textBox.text = "FIN";		
+			textBox.text = "Experiment Ended";
 		}
 
-		if (GameControl.control.RepPre == true && GameControl.control.laps == GameControl.control.LapsNumber) {
-			textBox.text = "FIN";
+		if (GameControl.control.laps == GameControl.control.LapsNumber) {
+			textBox.text = "Experiment Ended";
 			Application.Quit ();
 			}
 		}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -32,7 +32,7 @@ public class PreLevelScreen : MonoBehaviour {
 			}
 		}
 
-		if (GameControl.control.RepPre == true && GameControl.control.laps == GameControl.control.LapsNumber) {
+		if (GameControl.control.laps == GameControl.control.LapsNumber) {
 			if (Input.GetKey (KeyCode.Escape)) {
 				Application.Quit ();
 			}

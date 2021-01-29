@@ -10,22 +10,13 @@ public class GameControl : MonoBehaviour {
 	//Participant identifier info
 	public string participantNumber;
 
-	//M = 0, F = 1, other = 2
-	public int participantGender;
-	public string date;
-	/*(Control = 0, Condition = 1	
-		More conditions can be added later*/
-	//public string experimentType;
-
-	//Is the experiment alternate?
+	//Is the experiment alternate or normal maze?
 	public bool alternateExperiment;
 
-	//Does the experiment run without the aid of an experimenter?
-	public bool automaticExperiment;
-
-	public bool bypassAll;
+	// Number of laps to run
 	public int LapsNumber;
 
+	// These get set by default below
 	public int currentLevelNo = 0;
 	public string currentLevelName;
 	public string currentTargetObject;
@@ -38,15 +29,8 @@ public class GameControl : MonoBehaviour {
 	public string currentBox;
 	public int laps;
 	public int DSPtype;
-
-	//public string Rep;
-	public int Stressor;
 	public bool Full;
 	public string RepType;
-	public string ExpType;
-	public bool RepPre;
-	public bool Control;
-	public bool training;
 
 	public ArrayList arrowList = new ArrayList{};
 
@@ -78,7 +62,7 @@ public class GameControl : MonoBehaviour {
 		"Statue","Streetlamp",
 		"Fridge",
 		"Clock", "Bicycle",
-		"Swing", 
+		"Swing",
 		"Couch","TV",
 		"Swing","Phonebooth"};
 
@@ -87,7 +71,7 @@ public class GameControl : MonoBehaviour {
 		new Vector3(33.6f,4f,210.1f),new Vector3(33.6f,4f,210.1f),
 		new Vector3(11.4f,4f,129.2f), new Vector3(11.4f,4f,129.2f),
 		new Vector3(32.7f,4f,90.6f),new Vector3(32.7f,4f,90.6f),
-		new Vector3(71.3f,4f,71.0f), 
+		new Vector3(71.3f,4f,71.0f),
 		new Vector3(33.18f,4f,31.30f),new Vector3(33.18f,4f,31.30f),
 		new Vector3(151.9f,4f,12.30f),
 		new Vector3(191.8f,4f,52.70f),new Vector3(191.8f,4f,52.70f),
@@ -105,13 +89,13 @@ public class GameControl : MonoBehaviour {
 		//loads alternate or nonalternate learning phase
 		if (alternateExperiment == false) {
 			StartCoroutine (loadAfterDelay ("Learning - Normal", 0));
-		} 
+		}
 		else {
 			StartCoroutine (loadAfterDelay ("Learning - Alternate", 0));
 		}
 	}
-		
-	//takes in a list of levels; teleports to a random level in list; removes that level from list. 
+
+	//takes in a list of levels; teleports to a random level in list; removes that level from list.
 	public void rollNextLevel(){
 		//if the current level is 24 or under
 		if (currentLevelNo < 20) {
@@ -137,6 +121,7 @@ public class GameControl : MonoBehaviour {
 				levelPool.RemoveAt (i);
 				positionList.RemoveAt (i);
 			}
+
 			//for alternate experiment
 			else {
 				float randomGen = UnityEngine.Random.Range (0, levelPoolAlt.Count);
@@ -159,7 +144,7 @@ public class GameControl : MonoBehaviour {
 				levelPoolAlt.RemoveAt (i);
 				positionListAlt.RemoveAt (i);
 			}
-		} 
+		}
 		//after trials have concluded
 		else {
 			currentLevelNo = currentLevelNo + 1;
@@ -210,9 +195,9 @@ public class GameControl : MonoBehaviour {
 	void Awake () {
 		//if there is no gamecontrol object yet, make this one the control.
 		if (control == null) {
-			DontDestroyOnLoad (gameObject); 
+			DontDestroyOnLoad (gameObject);
 			control = this;
-		} 
+		}
 
 		//if a gamecontrol already exists, destroy this one.
 		else if (control != this) {

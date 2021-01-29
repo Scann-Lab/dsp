@@ -17,9 +17,9 @@ public class CollisionScript : MonoBehaviour {
 		if (GameControl.control.startedTrials==false){
 			//Shows the initial text and locks movement.
 			GameControl.control.movementLocked = true;
-			if (GameControl.control.automaticExperiment == true) {
-				touchText.text = "When you're ready, follow the red arrows while paying attention to the objects on the side. \nWe will make five laps around the maze. Press G to continue.";
-			}
+
+			touchText.text = "When you're ready, follow the red arrows while paying attention to the objects on the side. \nWe will make five laps around the maze. Press G to continue.";
+
 		}
 
 		//In the TRIAL phase
@@ -27,17 +27,13 @@ public class CollisionScript : MonoBehaviour {
 			//Shows the initial text and locks movement.
 			GameControl.control.movementLocked = true;
 			flickersauce.enabled = true;
-			if (GameControl.control.automaticExperiment == true) {
-				touchText.text = "Take a few moments to look around and orient yourself.\nWhen you're ready, press G.";
-			}
-		}
+
+			touchText.text = "Take a few moments to look around and orient yourself.\nWhen you're ready, press G.";
+	}
 		levelTimer = TIMER_VALUE;
 	}
 
 	void Update(){
-		//		if (levelTimer < 30.0f) {
-		//			Debug.Log ("LEVELTIMER: " + levelTimer);
-		//		}
 
 		/*
 		Handles activity in the LEARNING phase.
@@ -59,7 +55,7 @@ public class CollisionScript : MonoBehaviour {
 			}
 
 			//Pressing F starts the LEARNING phase.
-			if (Input.GetKey (KeyCode.F)) {
+			if (Input.GetKey (KeyCode.G)) {
 				GameControl.control.movementLocked = false;
 				touchText.color = Color.red;
 				touchText.text = "Laps Remaining: " + (GameControl.control.LapsNumber - GameControl.control.laps);

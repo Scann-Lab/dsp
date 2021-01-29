@@ -8,23 +8,13 @@ public class TrainingLevel : MonoBehaviour {
 	void Start(){
 		GameControl.control.currentLevelPosition = new Vector3 (40f, -19.83f, 43.13f);
 		instructionText.enabled = false;
-
-		if (GameControl.control.automaticExperiment==true) {
-			StartCoroutine (ShowInstructions ());
-		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//If Ctrl+G is pressed any time during the training phase, goes to the learning phase
-		if (Input.GetKey (KeyCode.F)) {
+		//If G is pressed any time during the training phase, goes to the learning phase
+		if (Input.GetKey (KeyCode.G)) {
 			GameControl.control.goToLearning ();
-		}
-
-		if (GameControl.control.training == true) {
-			if (Input.GetKey (KeyCode.F)) {
-				Application.Quit ();
-			}
 		}
 	}
 
@@ -33,14 +23,3 @@ public class TrainingLevel : MonoBehaviour {
 		instructionText.enabled = true;
 	}
 }
-
-
-//
-//if (GameControl.control.training == true) {
-//	if (Input.GetKey (KeyCode.Escape)) {
-//		Application.Quit ();
-//	}
-//}
-
-
-
