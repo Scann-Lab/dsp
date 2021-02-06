@@ -9,19 +9,20 @@ public class PreLevelScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (GameControl.control.currentLevelNo < 21) {
-			textBox.text = "Loading next trial";
-
+		if ((GameControl.control.laps == GameControl.control.LapsNumber) && (GameControl.control.currentLevelNo == 1)){
+			textBox.text = "Learning Ended. First trial loading.";
 		}
+
+		else if (GameControl.control.currentLevelNo < 21) {
+			textBox.text = "Loading next trial";
+		}
+
 		else {
 			textBox.text = "Experiment Ended";
+			Application.Quit();
 		}
 
-		if (GameControl.control.laps == GameControl.control.LapsNumber) {
-			textBox.text = "Experiment Ended";
-			Application.Quit ();
-			}
-		}
+	}
 
 	// Update is called once per frame
 	void Update ()

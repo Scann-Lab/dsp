@@ -18,7 +18,7 @@ public class CollisionScript : MonoBehaviour {
 			//Shows the initial text and locks movement.
 			GameControl.control.movementLocked = true;
 
-			touchText.text = "When you're ready, follow the red arrows while paying attention to the objects on the side. \nWe will make five laps around the maze. Press G to continue.";
+			touchText.text = "When you're ready, follow the red arrows while paying attention to the objects on the side. \nPress G to continue.";
 
 		}
 
