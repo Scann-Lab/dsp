@@ -1,6 +1,0 @@
-0.03:  194.0907,174.5757,90.49998,
-ParticipantNo: 1
-Repetition?: Full
-DSPType: 1
-Encoding Tours: 1
-!!1_dsp1_05
