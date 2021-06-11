@@ -13,6 +13,9 @@ public class GameControl : MonoBehaviour {
 	//Is the experiment alternate or normal maze?
 	public bool alternateExperiment;
 
+	// Using gamepad or not?
+	public bool UsingGamePad;
+
 	// Number of laps to run
 	public int LapsNumber;
 

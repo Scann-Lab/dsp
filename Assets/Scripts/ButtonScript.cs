@@ -7,13 +7,18 @@ public class ButtonScript : MonoBehaviour {
 	public UnityEngine.UI.InputField participant;
 	public UnityEngine.UI.Toggle alternate;
 	public UnityEngine.UI.InputField number;
+	// public UnityEngine.UI.Toggle gamepad;
+
 	public UnityEngine.UI.Text errorText;
 
 
+
 	public void LoadLevel(){
+		// gamepad = GameObject.Find("Gamepad Toggle");
 
 		GameControl.control.participantNumber = participant.text;
 		GameControl.control.alternateExperiment = alternate.isOn;
+		// GameControl.control.UsingGamePad = gamepad.isOn;
 		GameControl.control.LapsNumber = int.Parse(number.text);
 		string name = GameControl.control.participantNumber;
 
@@ -30,8 +35,10 @@ public class ButtonScript : MonoBehaviour {
 
 	public void StartExperiment(){
 		try{
+
 			GameControl.control.participantNumber = participant.text;
 			GameControl.control.alternateExperiment = alternate.isOn;
+			// GameControl.control.UsingGamePad = gamepad.isOn;
 			GameControl.control.LapsNumber = int.Parse(number.text);
 			string name = GameControl.control.participantNumber;
 

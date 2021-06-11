@@ -55,7 +55,7 @@ public class CollisionScript : MonoBehaviour {
 			}
 
 			//Pressing F starts the LEARNING phase.
-			if (Input.GetKey (KeyCode.G)) {
+			if (Input.GetKey (KeyCode.X) || Input.GetKey("joystick button 1")) {
 				GameControl.control.movementLocked = false;
 				touchText.color = Color.red;
 				touchText.text = "Laps Remaining: " + (GameControl.control.LapsNumber - GameControl.control.laps);

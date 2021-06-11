@@ -12,12 +12,16 @@ public class FirstPersonScript : MonoBehaviour {
 	double currTime = 0.0;
 	string directory;
 
+	int i = 0;
+
 	float movementSpeed = 18.0f;
 	float mouseSensitivity = 2.0f;
 
 	//Toggles whether write to disk is enabled.
 	public bool writeToDisk = true;
+	Vector3 speed;
 
+	public bool UsingGamePad;
 
 	// Use this for initialization
 	void Start () {
@@ -62,17 +66,40 @@ public class FirstPersonScript : MonoBehaviour {
 
 		//Movement Mechanics
 		//rotation
-		float rotLeftRight = Input.GetAxis ("Mouse X") * mouseSensitivity;
-		transform.Rotate (0, rotLeftRight, 0);
-		verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-		verticalRotation = Mathf.Clamp (verticalRotation, -upDownRange, upDownRange);
-		Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
+		i = PlayerPrefs.GetInt("UsingGamePad");
+		if(i == 1){
+			Debug.Log("i is 1");
+			UsingGamePad = true;
+		}else{
+			Debug.Log("i is 0");
+			UsingGamePad = false;
+		}
 
-		//movement
-		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
-		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
-		Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
-		speed = transform.rotation * speed;
+		if(UsingGamePad){
+			float rotLeftRight = Input.GetAxis ("Horizontal_look_joystick") * mouseSensitivity;
+			transform.Rotate (0, rotLeftRight, 0);
+			verticalRotation -= Input.GetAxis ("Vertical_look_joystick") * mouseSensitivity;
+			verticalRotation = Mathf.Clamp (verticalRotation, -upDownRange, upDownRange);
+			Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
+
+			//movement
+			float forwardSpeed = Input.GetAxis ("Vertical_walk_joystick") * movementSpeed;
+			float sideSpeed = Input.GetAxis ("Horizontal_walk_joystick") * movementSpeed;
+			speed = new Vector3 (sideSpeed, 0, forwardSpeed);
+			speed = transform.rotation * speed;
+		}else{
+			float rotLeftRight = Input.GetAxis ("Mouse X") * mouseSensitivity;
+			transform.Rotate (0, rotLeftRight, 0);
+			verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+			verticalRotation = Mathf.Clamp (verticalRotation, -upDownRange, upDownRange);
+			Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
+
+			//movement
+			float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
+			float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
+			speed = new Vector3 (sideSpeed, 0, forwardSpeed);
+			speed = transform.rotation * speed;
+		}
 
 		if (cc.enabled) {
 			cc.Move (speed * Time.deltaTime);

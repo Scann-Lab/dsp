@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 213678222}
+  UsingGamePad: 0
   writeToDisk: 1
 --- !u!143 &213678222
 CharacterController:
